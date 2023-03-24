@@ -1,0 +1,98 @@
+@startuml
+enum Color {
++  RED
++  BLUE
++  YELLOW
++  GREEN
++  PURPLE
+}
+class Circle {
+- double radius
++ double getRadius()
++ void setRadius(double)
++ double area()
++ double perimeter()
++ void draw()
++ void draw(Color)
+}
+class PaintExample {
++ {static} void main(String[])
+}
+class Rectangle {
+- Point vertex1
+- Point vertex2
+- Point vertex3
+- Point vertex4
++ double sideLength(Point,Point)
++ double area()
++ double perimeter()
++ String getVertex1()
++ String getVertex2()
++ String getVertex3()
++ String getVertex4()
++ void draw()
++ void draw(Color)
+}
+class Square {
+- Point svertex1
+- Point svertex2
+- Point svertex3
+- Point svertex4
++ double area()
++ double perimeter()
++ void draw()
++ void draw(Color)
+}
+interface Drawable {
+~ void draw()
+~ void draw(Color)
+}
+class Point {
+- int x
+- int y
++ int getX()
++ void setX(int)
++ int getY()
++ void setY(int)
+}
+class FigureUtil {
++ {static} double area(Figure)
++ {static} double perimeter(Figure)
++ {static} void draw(Figure)
++ {static} void draw(Figure,Color)
+}
+class Triangle {
+- Point vertex1
+- Point vertex2
+- Point vertex3
++ String getVertex1()
++ void setVertex1(Point)
++ String getVertex2()
++ void setVertex2(Point)
++ String getVertex3()
++ void setVertex3(Point)
+- double sideLength(Point,Point)
++ double area()
++ double perimeter()
++ void draw()
++ void draw(Color)
+}
+abstract class Figure {
+# Point center
++ Point getCenter()
++ void setCenter(Point)
++ {abstract}double area()
++ {abstract}double perimeter()
+}
+
+
+Drawable <|.. Circle
+Figure <|-- Circle
+Drawable <|.. Rectangle
+Figure <|-- Rectangle
+Drawable <|.. Square
+Rectangle <|-- Square
+Drawable <|.. Triangle
+Figure <|-- Triangle
+Drawable <|.. Figure
+@enduml

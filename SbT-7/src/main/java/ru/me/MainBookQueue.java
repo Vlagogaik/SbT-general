@@ -2,23 +2,25 @@ package ru.me;
 import java.io.*;
 import java.util.*;
 import java.io.FileOutputStream;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 
-public class MainWordQueue implements Word {
+public class MainBookQueue implements Report {
     public Map<String, Integer> Allword = new HashMap<>();
     private String nameFile;
 
 
-    public MainWordQueue(String nameFile) {
+    public MainBookQueue(String nameFile) {
         this.nameFile = nameFile;
     }
 
-    @Override
-    public void Wa() {
+    private void Аnalysis() {
         try (Scanner scanner = new Scanner(new File(nameFile))) {
             Queue<String> wordQueue = new LinkedList<>();
             while (scanner.hasNextLine()) {
@@ -42,19 +44,17 @@ public class MainWordQueue implements Word {
             e.printStackTrace();
         }
     }
-
-    @Override
-    public void GetResInConsole() {
-        Wa();
+    private void GetResInConsole() {
+        Аnalysis();
         for (Map.Entry<String, Integer> entry : Allword.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
         Allword.clear();
     }
 
-    @Override
-    public void GetResInPDF(String fileName) {
-        Wa();
+
+    private void GetResInPDF(String fileName) {
+        Аnalysis();
         Document document = new Document();
         try {
             PdfWriter.getInstance(document, new FileOutputStream(fileName));
@@ -74,5 +74,37 @@ public class MainWordQueue implements Word {
             document.close();
         }
         Allword.clear();
+    }
+    private void GetResInDOC() {
+        try {
+            Аnalysis();
+            XWPFDocument document = new XWPFDocument();
+            XWPFParagraph paragraph = document.createParagraph();
+            for (Map.Entry<String, Integer> entry : Allword.entrySet()) {
+                XWPFRun run = paragraph.createRun();
+                run.setText(entry.getKey() + ": " + entry.getValue());
+                run.setFontFamily("Times New Roman");
+                run.addBreak();
+            }
+            Allword.clear();
+            FileOutputStream out = new FileOutputStream("Result.docx");
+            document.write(out);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void Writer(String s) {
+        if((s.equals("PDF")) || (s.equals("pdf"))){
+            GetResInPDF("Result.pdf");
+        }
+        if((s.equals("Console")) || (s.equals("console"))){
+            GetResInConsole();
+        }
+        if((s.equals("docx")) || (s.equals("doc")) || (s.equals("DOC")) || (s.equals("DOCX"))){
+            GetResInDOC();
+        }
     }
 }

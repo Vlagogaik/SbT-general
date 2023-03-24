@@ -1,0 +1,36 @@
+@startuml
+class ru.me.TestMAP {
++ void mapTest()
+}
+class ru.me.StartWord {
++ {static} void main(String[])
+}
+class ru.me.MainBookTXT {
++ Map<String,Integer> Allword
+- String nameFile
+- void Аnalysis()
+- void GetResInConsole()
+- void GetResInPDF(String)
+- void GetResInDOC()
++ void Writer(String)
+}
+class ru.me.MainBookQueue {
++ Map<String,Integer> Allword
+- String nameFile
+- void Аnalysis()
+- void GetResInConsole()
+- void GetResInPDF(String)
+- void GetResInDOC()
++ void Writer(String)
+}
+interface ru.me.Report {
+~ void Writer(String)
+}
+class ru.me.mainMAP {
++ Map<V,K> swap(Map<K,V>)
+}
+
+
+ru.me.Report <|.. ru.me.MainBookTXT
+ru.me.Report <|.. ru.me.MainBookQueue
+@enduml
