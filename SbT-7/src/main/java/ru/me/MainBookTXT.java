@@ -41,7 +41,7 @@ public class MainBookTXT implements Report {
             e.printStackTrace();
         }
     }
-    private void GetResInConsole(){
+    private void WriteToConsole(){
         Аnalysis();
         for (Map.Entry<String, Integer> entry : Allword.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
@@ -49,7 +49,7 @@ public class MainBookTXT implements Report {
         Allword.clear();
     }
 
-    private void GetResInPDF(String fileName){
+    private void WriteToPDF(String fileName){
         Аnalysis();
         Document document = new Document();
         try {
@@ -72,7 +72,7 @@ public class MainBookTXT implements Report {
         Allword.clear();
     }
 
-    private void GetResInDOC() {
+    private void WriteToDOC() {
         try {
             Аnalysis();
             XWPFDocument document = new XWPFDocument();
@@ -94,13 +94,13 @@ public class MainBookTXT implements Report {
     @Override
     public void Writer(String s) {
         if((s.equals("PDF")) || (s.equals("pdf"))){
-            GetResInPDF("Result.pdf");
+            WriteToPDF("Result.pdf");
         }
         if((s.equals("Console")) || (s.equals("console"))){
-            GetResInConsole();
+            WriteToConsole();
         }
         if((s.equals("docx")) || (s.equals("doc")) || (s.equals("DOC")) || (s.equals("DOCX"))){
-            GetResInDOC();
+            WriteToDOC();
         }
     }
 //    public static void main(String[] args) {

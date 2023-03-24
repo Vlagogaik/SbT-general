@@ -44,7 +44,7 @@ public class MainBookQueue implements Report {
             e.printStackTrace();
         }
     }
-    private void GetResInConsole() {
+    private void WriteTOConsole() {
         Аnalysis();
         for (Map.Entry<String, Integer> entry : Allword.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
@@ -53,7 +53,7 @@ public class MainBookQueue implements Report {
     }
 
 
-    private void GetResInPDF(String fileName) {
+    private void WriteToPDF(String fileName) {
         Аnalysis();
         Document document = new Document();
         try {
@@ -75,7 +75,7 @@ public class MainBookQueue implements Report {
         }
         Allword.clear();
     }
-    private void GetResInDOC() {
+    private void WriteToDoc() {
         try {
             Аnalysis();
             XWPFDocument document = new XWPFDocument();
@@ -98,13 +98,13 @@ public class MainBookQueue implements Report {
     @Override
     public void Writer(String s) {
         if((s.equals("PDF")) || (s.equals("pdf"))){
-            GetResInPDF("Result.pdf");
+            WriteToPDF("Result.pdf");
         }
         if((s.equals("Console")) || (s.equals("console"))){
-            GetResInConsole();
+            WriteTOConsole();
         }
         if((s.equals("docx")) || (s.equals("doc")) || (s.equals("DOC")) || (s.equals("DOCX"))){
-            GetResInDOC();
+            WriteToDoc();
         }
     }
 }
