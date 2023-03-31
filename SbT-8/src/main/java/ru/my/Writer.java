@@ -1,8 +1,6 @@
 package ru.my;
 //Класс для вывода того что там анализатор на анализировал
 public class Writer implements OutPut{
-    InPut ip;
-    Analyzer an;
 
 //    Shell sh = new Shell();
 
