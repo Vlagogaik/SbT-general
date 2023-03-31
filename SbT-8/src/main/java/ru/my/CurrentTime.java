@@ -20,4 +20,6 @@ public class CurrentTime implements Command{
     public String exec() {
         return getDescription();
     }
+
+
 }

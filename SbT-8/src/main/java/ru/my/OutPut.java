@@ -1,5 +1,7 @@
 package ru.my;
 
+import java.util.Scanner;
+
 public interface OutPut {
-    void report(String s);
+    void report(Shell s, Scanner a);
 }

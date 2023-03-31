@@ -3,7 +3,7 @@ package ru.my;
 public class WorkingDirectory implements Command{
     @Override
     public String getName() {
-        return "WorkingDirectory";
+        return "pwd";
     }
 
     @Override
@@ -15,4 +15,6 @@ public class WorkingDirectory implements Command{
     public String exec() {
         return getDescription();
     }
+
+
 }

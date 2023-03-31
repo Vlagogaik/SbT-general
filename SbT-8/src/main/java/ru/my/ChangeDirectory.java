@@ -2,22 +2,29 @@ package ru.my;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class ChangeDirectory implements Command{
     String s;
-    public ChangeDirectory(String s){
-        this.s = s;
+    Scanner scanner;
+    Shell sh;
+    public ChangeDirectory(Shell sh){
+        this.sh = sh;
+    }
+    public ChangeDirectory(){
     }
     @Override
     public String getName() {
-        return "ChangeDirectory";
+        return "cd";
     }
 
     @Override
     public String getDescription() {
-        Shell sh = new Shell();
         String command = s;
-        String path = command.substring(3).trim();
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.println("Which directory should I change to?");
+        String path = scanner1.nextLine();
+//        String path = command.substring(3).trim();
         File newDir = new File(path);
         if (!newDir.isDirectory()) {
             return "No such directory";
@@ -35,4 +42,6 @@ public class ChangeDirectory implements Command{
     public String exec() {
         return getDescription();
     }
+
+
 }

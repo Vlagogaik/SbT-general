@@ -3,9 +3,14 @@ package ru.my;
 import java.io.File;
 
 public class ListDirectory implements Command{
+    Shell sh;
+    public ListDirectory() {
+
+    }
+
     @Override
     public String getName() {
-        return "ListDirectory";
+        return "ls";
     }
 
     @Override
@@ -26,4 +31,6 @@ public class ListDirectory implements Command{
     public String exec() {
         return getDescription();
     }
+
+
 }

@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class CurrentDate implements Command{
     @Override
     public String getName() {
-        return "CurrentDate";
+        return "date";
     }
 
     @Override
@@ -20,4 +20,5 @@ public class CurrentDate implements Command{
     public String exec() {
         return getDescription();
     }
+
 }
